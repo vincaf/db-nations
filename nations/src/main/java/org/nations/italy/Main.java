@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -13,6 +14,11 @@ public class Main {
 		String url = "jdbc:mysql://localhost:3306/nations";
 		String user = "root";
 		String password = "root";
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Inserire il nome della nazione da cercare: ");
+		String nationName = sc.nextLine();
+		sc.close();
 		 
 		Connection con = null;
 		try {
@@ -25,6 +31,7 @@ public class Main {
 					+ "	ON countries.region_id = regions.region_id\r\n"
 					+ "JOIN continents\r\n"
 					+ "	ON regions.continent_id = continents.continent_id\r\n"
+					+ "WHERE countries.name LIKE '" + nationName + "'"
 					+ "ORDER BY countries.name;";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -52,6 +59,7 @@ public class Main {
 				con.close();
 			} catch (Exception e) { }
 		}
-	}
 
+	}
+	
 }
