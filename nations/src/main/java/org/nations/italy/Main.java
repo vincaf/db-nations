@@ -35,8 +35,10 @@ public class Main {
 				
 				final int id = rs.getInt(1);
 				final String name = rs.getString(2);
+				final String regionName = rs.getString(3);
+				final String continentName = rs.getString(4);
 				
-				System.out.println(id + " - " + name);
+				System.out.println(id + " - " + name + " - " + regionName + " - " + continentName);
 			}
 			
 			ps.close();
